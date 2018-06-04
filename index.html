@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>	
+	<TITLE>
+	</TITLE>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+	<script>
+  		var config = {
+    		apiKey: "AIzaSyDvitgdHX9s1AkZ9pdCTBY4tSorviHXOt8",
+    		authDomain: "test-led-9a5cf.firebaseapp.com",
+    		databaseURL: "https://test-led-9a5cf.firebaseio.com",
+    		projectId: "test-led-9a5cf",
+    		storageBucket: "test-led-9a5cf.appspot.com",
+    		messagingSenderId: "547785130799"
+  		};
+  		firebase.initializeApp(config);
+  		var database = firebase.database();
+  		var firebaseRef = firebase.database().ref("device");
+		firebaseRef.once('value').then(function(dataSnapshot) {
+			console.log(dataSnapshot.val());
+		});
+	</script>
+</HEAD>
+<BODY>
+
+</BODY>
+</HTML>
