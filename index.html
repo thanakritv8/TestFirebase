@@ -18,7 +18,15 @@
   		var firebaseRef = firebase.database().ref("device");
 		firebaseRef.once('value').then(function(dataSnapshot) {
 			console.log(dataSnapshot.val());
+      writeUserData();
 		});
+    function writeUserData() {
+      firebase.database().ref('device').set({
+        led1: 10,
+        led2: 11,
+        led5 : 12
+    });
+}
 	</script>
 </HEAD>
 <BODY>
