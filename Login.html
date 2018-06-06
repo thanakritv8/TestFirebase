@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>	
+	<TITLE>
+	</TITLE>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+	<script>
+  		// Initialize Firebase
+	    var config = {
+	    	apiKey: "AIzaSyBp08QdLHVX8IirDNZRbT6VJVjdsJiYgq4",
+	    	authDomain: "smarthome-29b6a.firebaseapp.com",
+	    		databaseURL: "https://smarthome-29b6a.firebaseio.com",
+	        projectId: "smarthome-29b6a",
+	        storageBucket: "smarthome-29b6a.appspot.com",
+	        messagingSenderId: "252840214404"
+	    };
+	    firebase.initializeApp(config);
+      	// CHECK ARE YOU SIGNIN?
+		firebase.auth().onAuthStateChanged(function(user) {
+			if(user){
+				console.log("signed");
+				var userAuth = firebase.auth().currentUser;
+				if(userAuth != null){
+					var name, email, photoUrl, uid;
+					name = user.displayName;
+					email = user.email;
+					photoUrl = user.photoURL;
+					uid = user.uid;
+					console.log(name); 
+				}				
+			}else{
+				signin();
+			}
+		});
+
+      
+	    function signin(){
+	        var provider = new firebase.auth.GoogleAuthProvider();
+	        firebase.auth().signInWithPopup(provider).then(function(result) {
+	          // This gives you a Google Access Token. You can use it to access the Google API.
+	          var token = result.credential.accessToken;
+	          // The signed-in user info.
+	          var user = result.user;
+
+	          console.log(result);
+	          // ...
+	        }).catch(function(error) {
+	          // Handle Errors here.
+	          var errorCode = error.code;
+	          var errorMessage = error.message;
+	          // The email of the user's account used.
+	          var email = error.email;
+	          // The firebase.auth.AuthCredential type that was used.
+	          var credential = error.credential;
+	          // ...
+	          console.log(errorCode + " " + errorMessage);
+	        });
+	    }
+	</script>
+</HEAD>
+<BODY>
+
+</BODY>
+</HTML>
